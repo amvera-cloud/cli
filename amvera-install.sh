@@ -17,6 +17,8 @@ if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     echo "Error: Invalid version format"
     echo "Version should be in format: vX.Y.Z (e.g., v1.0.0)"
     exit 1
+else
+    echo "Chosen version ${VERSION}"
 fi
 
 # Detect OS
