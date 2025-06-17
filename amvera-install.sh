@@ -60,6 +60,7 @@ case "$OS" in
 esac
 
 DOWNLOAD_URL="${REPO_URL}/${VERSION}/${ZIP_NAME}"
+echo "Downloading ${DOWNLOAD_URL}"
 
 # Target install dir
 if [[ "$OS" == "windows" ]]; then
