@@ -40,7 +40,6 @@ esac
 
 # Set binary name and archive name
 BINARY_NAME="amvera"
-[[ "$OS" == "windows" ]] && BINARY_NAME="${BINARY_NAME}.exe"
 
 # Set archive name based on OS and ARCH
 case "$OS" in
@@ -88,6 +87,9 @@ if [[ "$OS" == "windows" ]]; then
 else
     unzip "$ZIP_NAME"
 fi
+
+# Rename binary for Windows
+[[ "$OS" == "windows" ]] && BINARY_NAME="${BINARY_NAME}.exe"
 
 # Set permissions
 if [[ "$OS" != "windows" ]]; then
