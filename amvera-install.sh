@@ -54,7 +54,7 @@ case "$OS" in
     fi
     ;;
   linux)
-    ZIP_NAME="${BINARY_NAME}-ubuntu.zip"
+    ZIP_NAME="${BINARY_NAME}-linux.zip"
     ;;
 esac
 
@@ -64,10 +64,10 @@ echo "Downloading ${DOWNLOAD_URL}"
 # Target install dir
 if [[ "$OS" == "windows" ]]; then
     # For Windows, use Program Files or user's local directory
-    if [[ -w "C:/Program Files" ]]; then
-        INSTALL_DIR="C:/Program Files/amvera"
+    if [[ -w "$PROGRAMFILES" ]]; then
+        INSTALL_DIR="$PROGRAMFILES/Amvera"
     else
-        INSTALL_DIR="$LOCALAPPDATA/amvera"
+        INSTALL_DIR="$LOCALAPPDATA/Amvera"
     fi
 else
     INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
