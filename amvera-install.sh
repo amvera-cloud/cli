@@ -97,8 +97,12 @@ if [[ "$OS" != "windows" ]]; then
 fi
 
 # Create install directory if it doesn't exist
-if [[ ! -w "$INSTALL_DIR" ]]; then
-    sudo mkdir -p "$INSTALL_DIR"
+if [[ "$OS" != "windows" ]]; then
+    if [[ ! -w "$INSTALL_DIR" ]]; then
+        sudo mkdir -p "$INSTALL_DIR"
+    else
+        mkdir -p "$INSTALL_DIR"
+    fi
 else
     mkdir -p "$INSTALL_DIR"
 fi
