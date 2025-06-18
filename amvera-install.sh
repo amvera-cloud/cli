@@ -2,24 +2,9 @@
 
 set -e
 
-if [ $# -eq 0 ]; then
-    echo "Error: Version is required"
-    echo "Usage: $0 <version>"
-    echo "Example: $0 v1.0.0"
-    exit 1
-fi
 
-VERSION="$1"
+VERSION="v0.9.22"
 REPO_URL="https://github.com/amvera-cloud/cli/releases/download"
-
-# Check if version is provided
-if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    echo "Error: Invalid version format"
-    echo "Version should be in format: vX.Y.Z (e.g., v1.0.0)"
-    exit 1
-else
-    echo "Chosen version ${VERSION}"
-fi
 
 # Detect OS
 OS="$(uname | tr '[:upper:]' '[:lower:]')"
