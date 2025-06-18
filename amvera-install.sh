@@ -3,7 +3,7 @@
 set -e
 
 
-VERSION="v0.9.22"
+VERSION="v0.9.2"
 REPO_URL="https://github.com/amvera-cloud/cli/releases/download"
 
 # Detect OS
