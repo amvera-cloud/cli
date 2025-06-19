@@ -143,5 +143,30 @@ if [[ "$OS" == "windows" ]]; then
         echo "5. Click 'Edit' and add: $INSTALL_DIR"
     fi
 else
-    echo "Make sure $INSTALL_DIR is in your PATH"
+    # Check PATH
+    if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
+        echo "$INSTALL_DIR is not in your PATH."
+        read -p "Would you like to add $INSTALL_DIR to your PATH? [Y/n] " answer
+        answer=${answer:-Y}
+        if [[ "$answer" =~ ^[Yy]$ ]]; then
+            SHELL_PROFILE=""
+            if [ -n "$ZSH_VERSION" ]; then
+                SHELL_PROFILE="$HOME/.zshrc"
+            elif [ -n "$BASH_VERSION" ]; then
+                SHELL_PROFILE="$HOME/.bashrc"
+            else
+                SHELL_PROFILE="$HOME/.profile"
+            fi
+            if ! grep -q "export PATH=\"\$PATH:$INSTALL_DIR\"" "$SHELL_PROFILE" 2>/dev/null; then
+                echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$SHELL_PROFILE"
+                echo "Added $INSTALL_DIR to your PATH in $SHELL_PROFILE."
+                echo "Please restart your terminal or run:   $SHELL_PROFILE"
+            else
+                echo "$INSTALL_DIR is already in $SHELL_PROFILE."
+            fi
+        else
+            echo "To run 'amvera' from anywhere, add the following line to your shell profile (e.g., ~/.bashrc, ~/.zshrc, or ~/.profile):"
+            echo "export PATH=\"\$PATH:$INSTALL_DIR\""
+        fi
+    fi
 fi
